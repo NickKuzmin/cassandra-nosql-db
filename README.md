@@ -2,6 +2,12 @@
 
 > docker pull cassandra
 
-> docker run -it --rm --name cassandra cassandra -v
+Check version:
+> docker run -it --rm --name cassandra-container-name cassandra -v
 
-> docker run -it --network some-network --rm cassandra cqlsh some-cassandra
+> docker network create --driver nat cassandra-network-name
+
+> docker run --name cassandra-container-name --network cassandra-network-name -d cassandra
+
+> docker run -it --network cassandra-network-name --rm cassandra cqlsh cassandra-container-name
+
